@@ -28,7 +28,7 @@ public class HomePage {
     @FindBy(className = "vHeaderIcons__item--textSearch")
     WebElement searchButton;
 
-    @FindBy(id = "textSearch")
+    @FindBy(className = "textSearch")
     WebElement inputLine;
 
     @FindBy(xpath = "//*[@id=\"panelSearch\"]/div[2]/div[3]/form/div[3]/div/ul/li/a")
@@ -40,7 +40,7 @@ public class HomePage {
     }
 
     public HomePage enterKeys(String inputCode){
-        inputLine.sendKeys(inputCode);
+        getTrueInputLine().sendKeys(inputCode);
         return this;
     }
 
@@ -61,6 +61,10 @@ public class HomePage {
 
     public WebElement getInputLine() {
         return inputLine;
+    }
+
+    public WebElement getTrueInputLine() {
+        return inputLine.findElement(By.id("textSearch"));
     }
 
     public WebElement getProductLink() {
