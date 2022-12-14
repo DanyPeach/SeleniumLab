@@ -18,7 +18,7 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"panelSearch\"]/div[2]/div[3]/form/div[3]/div/ul/li/a")
     WebElement productLink;
 
-    @FindBy(xpath = "/html/body/div[1]/header/nav[1]/ul/li[4]/button/div")
+    @FindBy(xpath = "//*[@id=\"home\"]/footer/div[3]/div[2]/button")
     WebElement worldButton;
 
     @FindBy(id = "cycLabel--europe")
@@ -81,7 +81,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickOnWorld() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(worldButton)).click();
+            wait.until(ExpectedConditions.visibilityOf(worldButton)).click();
         } catch (TimeoutException e) {
             worldButton.click();
         }
