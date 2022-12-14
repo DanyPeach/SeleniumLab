@@ -125,7 +125,7 @@ public class HomePage extends AbstractPage {
     }
 
     public String waitForNewCountry() {
-        wait.until(ExpectedConditions.elementToBeClickable(countryShop));
+        wait.until(ExpectedConditions.visibilityOf(countryShop));
         return countryShop.getText().contains("AT") ? "AT" : "LT";
     }
 }
