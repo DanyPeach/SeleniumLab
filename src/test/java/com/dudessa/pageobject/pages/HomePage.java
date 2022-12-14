@@ -103,7 +103,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage chooseCoutry() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(ausria));
+            wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
         } catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
             europeLocator.click();
             wait.until(ExpectedConditions.elementToBeClickable(lithuania)).click();
