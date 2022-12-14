@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Locale;
+
 public class HomePage extends AbstractPage {
 
     private final String PAGE_URL = "https://www.valentino.com/en-ca";
@@ -125,7 +127,7 @@ public class HomePage extends AbstractPage {
     }
 
     public String waitForNewCountry() {
-        wait.until(ExpectedConditions.visibilityOf(countryShop));
-        return countryShop.getText().contains("AT") ? "AT" : "LT";
+       String currentURL = driver.getCurrentUrl();
+       return currentURL.toLowerCase(Locale.ROOT).contains("at") ? "at" : "li";
     }
 }

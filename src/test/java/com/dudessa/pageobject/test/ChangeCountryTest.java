@@ -14,6 +14,6 @@ public class ChangeCountryTest extends CommonConditions{
         javascriptExecutor.executeScript("scroll(0, 5500);");
         homePage.openPage().clickOnWorld().chooseEurope().chooseCoutry();
         String result = homePage.waitForNewCountry();
-        Assert.assertEquals(result, "AT");
+        Assert.assertEquals(result, "at");
     }
 }
