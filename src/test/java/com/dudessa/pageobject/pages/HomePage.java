@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.Time;
+
 public class HomePage extends AbstractPage {
 
     private final String PAGE_URL = "https://www.valentino.com/en-ca";
@@ -50,13 +52,22 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage enterKeys(String inputCode) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(inputLine));
+        }catch (TimeoutException e){
+            searchButton.click();
+        }
         wait.until(ExpectedConditions.elementToBeClickable(inputLine));
         inputLine.sendKeys(inputCode, Keys.ENTER);
         return this;
     }
 
     public HomePage enterKeys() {
-        wait.until(ExpectedConditions.elementToBeClickable(inputLine));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(inputLine));
+        }catch (TimeoutException e) {
+            searchButton.click();
+        }
         inputLine.sendKeys(TestConstants.PRODUCT_CODE);
         return this;
     }
@@ -77,6 +88,11 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage chooseEurope() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
+        }catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
+            worldButton.click();
+        }
         wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
         europeLocator.click();
         return this;
@@ -95,6 +111,6 @@ public class HomePage extends AbstractPage {
 
     public String waitForNewCountry() {
         wait.until(ExpectedConditions.elementToBeClickable(countryShop));
-        return countryShop.getText().contains("AT") || countryShop.getText().contains("LT") ? "AT" : "";
+        return countryShop.getText().contains("AT") || countryShop.getText().contains("LT") ? "AT" : "LT";
     }
 }
