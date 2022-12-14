@@ -1,10 +1,7 @@
 package com.dudessa.pageobject.pages;
 
 import com.dudessa.pageobject.constants.TestConstants;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -88,8 +85,9 @@ public class HomePage extends AbstractPage {
     public HomePage chooseCoutry() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(ausria));
-        } catch (TimeoutException e) {
-            lithuania.click();
+        } catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
+            europeLocator.click();
+            wait.until(ExpectedConditions.elementToBeClickable(lithuania)).click();
         }
 
         return this;
