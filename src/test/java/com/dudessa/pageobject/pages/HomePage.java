@@ -80,8 +80,8 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickOnWorld() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(worldButton)).click();
-        } catch (TimeoutException e) {
+            wait.until(ExpectedConditions.elementToBeClickable(countryShop)).click();
+        } catch (TimeoutException | ElementNotInteractableException e) {
             worldButton.click();
         }
         return this;
