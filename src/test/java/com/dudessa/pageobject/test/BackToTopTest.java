@@ -12,7 +12,7 @@ public class BackToTopTest extends CommonConditions{
         HomePage homePage = new HomePage(driver);
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         homePage.openPage();
-        javascriptExecutor.executeScript("window.scrollBy(0,1200)");
+        javascriptExecutor.executeScript("scroll(0, 2500);");
         homePage.backToTopCheck();
         boolean t = homePage.isBtnVisible();
         Assert.assertTrue(t);
