@@ -11,7 +11,7 @@ import static com.dudessa.pageobject.constants.PageNaming.FILTER_CATALOG_PAGE;
 
 public class FilterPage extends AbstractPage {
 
-    @FindBy(xpath = "//*[@id=\"main\"]/section/section[1]/section[5]")
+    @FindBy(xpath = "/html/body/div[1]/main/section/section[1]/section[5]")
     WebElement filtration;
 
     @FindBy(xpath = "/html/body/div[1]/main/section/section[1]/section[5]/div/fieldset/ul/li[3]/label")
