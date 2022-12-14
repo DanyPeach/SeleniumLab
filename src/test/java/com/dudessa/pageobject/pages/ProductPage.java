@@ -1,6 +1,7 @@
 package com.dudessa.pageobject.pages;
 
 import com.dudessa.pageobject.constants.PageNaming;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,8 +42,12 @@ public class ProductPage extends AbstractPage {
     }
 
     public boolean checkCart() {
-        wait.until(ExpectedConditions.visibilityOf(cartTitle));
-        return cartTitle.getText().contains("1");
+        try {
+            wait.until(ExpectedConditions.visibilityOf(cartTitle));
+        }catch (TimeoutException e){
+            return cartTitle.getText().contains("1");
+        }
+        return false;
     }
 
     public WebElement findCodeOnPage() {
