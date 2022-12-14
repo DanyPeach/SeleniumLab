@@ -80,7 +80,8 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage chooseEurope() {
-        wait.until(ExpectedConditions.elementToBeClickable(europeLocator)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
+        europeLocator.click();
         return this;
     }
 
