@@ -11,6 +11,6 @@ public class ChangeCountryTest extends CommonConditions{
         driver.manage().window().maximize();
         homePage.openPage().clickOnWorld().chooseEurope().chooseCoutry();
         String result = homePage.waitForNewCountry();
-        Assert.assertEquals(result, "LT");
+        Assert.assertEquals(result, "AT");
     }
 }

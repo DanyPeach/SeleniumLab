@@ -32,6 +32,9 @@ public class HomePage extends AbstractPage {
     @FindBy(className = "lt")
     WebElement lithuania;
 
+    @FindBy(className = "de")
+    WebElement denmark;
+
     @FindBy(className = "shippingCountry")
     WebElement countryShop;
 
@@ -82,7 +85,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(countryShop)).click();
         } catch (TimeoutException | ElementNotInteractableException e) {
-            worldButton.click();
+            countryShop.click();
         }
         return this;
     }
@@ -91,7 +94,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
         }catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
-            worldButton.click();
+            countryShop.click();
         }
         wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
         europeLocator.click();
