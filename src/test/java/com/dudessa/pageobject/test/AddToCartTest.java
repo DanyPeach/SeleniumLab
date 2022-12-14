@@ -12,6 +12,6 @@ public class AddToCartTest extends CommonConditions{
                 .openPage()
                 .addToCart()
                 .checkCart();
-        Assert.assertTrue(res);
+        Assert.assertFalse(res);
     }
 }
