@@ -5,8 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.sql.Time;
-
 public class HomePage extends AbstractPage {
 
     private final String PAGE_URL = "https://www.valentino.com/en-ca";
@@ -14,13 +12,13 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//button[@aria-controls='panelSearchMobile']")
     WebElement searchButton;
 
-    @FindBy(id = "textSearch")
+    @FindBy(xpath = "//*[@id=\"textSearch\"]")
     WebElement inputLine;
 
     @FindBy(xpath = "//*[@id=\"panelSearch\"]/div[2]/div[3]/form/div[3]/div/ul/li/a")
     WebElement productLink;
 
-    @FindBy(className = "vHeaderIcons__item--cyc")
+    @FindBy(xpath = "//*[@id=\"home\"]/div[1]/header/nav[1]/ul/li[4]/button")
     WebElement worldButton;
 
     @FindBy(id = "cycLabel--europe")
@@ -32,8 +30,8 @@ public class HomePage extends AbstractPage {
     @FindBy(className = "lt")
     WebElement lithuania;
 
-    @FindBy(className = "de")
-    WebElement denmark;
+    @FindBy(className = "backToTop")
+    WebElement backToTopButton;
 
     @FindBy(className = "shippingCountry")
     WebElement countryShop;
@@ -57,7 +55,7 @@ public class HomePage extends AbstractPage {
     public HomePage enterKeys(String inputCode) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
-        }catch (TimeoutException e){
+        } catch (TimeoutException e) {
             searchButton.click();
         }
         wait.until(ExpectedConditions.elementToBeClickable(inputLine));
@@ -68,7 +66,7 @@ public class HomePage extends AbstractPage {
     public HomePage enterKeys() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
-        }catch (TimeoutException e) {
+        } catch (TimeoutException e) {
             searchButton.click();
         }
         inputLine.sendKeys(TestConstants.PRODUCT_CODE);
@@ -83,9 +81,9 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickOnWorld() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(countryShop)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(worldButton)).click();
         } catch (TimeoutException | ElementNotInteractableException e) {
-            countryShop.click();
+            worldButton.click();
         }
         return this;
     }
@@ -93,8 +91,8 @@ public class HomePage extends AbstractPage {
     public HomePage chooseEurope() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
-        }catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
-            countryShop.click();
+        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
+            worldButton.click();
         }
         wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
         europeLocator.click();
@@ -104,16 +102,30 @@ public class HomePage extends AbstractPage {
     public HomePage chooseCoutry() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
-        } catch (NoSuchElementException | TimeoutException  | ElementNotInteractableException r){
+        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
             europeLocator.click();
-            wait.until(ExpectedConditions.elementToBeClickable(lithuania)).click();
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
+            } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException e) {
+                wait.until(ExpectedConditions.elementToBeClickable(lithuania)).click();
+            }
         }
 
         return this;
     }
 
+    public HomePage backToTopCheck(){
+        wait.until(ExpectedConditions.elementToBeClickable(backToTopButton)).click();
+        return this;
+    }
+
+    public boolean isBtnVisible(){
+        wait.until(ExpectedConditions.visibilityOf(searchButton));
+        return searchButton.isDisplayed();
+    }
+
     public String waitForNewCountry() {
         wait.until(ExpectedConditions.elementToBeClickable(countryShop));
-        return countryShop.getText().contains("AT") || countryShop.getText().contains("LT") ? "AT" : "LT";
+        return countryShop.getText().contains("AT") ? "AT" : "LT";
     }
 }

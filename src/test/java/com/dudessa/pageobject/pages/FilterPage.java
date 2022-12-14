@@ -11,10 +11,10 @@ import static com.dudessa.pageobject.constants.PageNaming.FILTER_CATALOG_PAGE;
 
 public class FilterPage extends AbstractPage {
 
-    @FindBy(xpath = "/html/body/div[1]/main/section/section[1]/section[5]")
+    @FindBy(id = "accordionLabel_343")
     WebElement filtration;
 
-    @FindBy(xpath = "/html/body/div[1]/main/section/section[1]/section[5]/div/fieldset/ul/li[3]/label")
+    @FindBy(xpath = "//*[@id=\"accordionControl_962\"]/fieldset/ul/li[3]/label")
     WebElement collectionParam;
 
     @FindBy(className = "item__info")
