@@ -29,14 +29,14 @@ public class HomePage extends AbstractPage {
     @FindBy(className = "at")
     WebElement ausria;
 
-    @FindBy(className = "lt")
+    @FindBy(className = "gb")
     WebElement lithuania;
 
     @FindBy(className = "backToTop")
     WebElement backToTopButton;
 
-    @FindBy(className = "shippingCountry")
-    WebElement countryShop;
+    @FindBy(className = "chooseYourCountry__wxLink")
+    WebElement internationalCite;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -90,31 +90,42 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage chooseEurope() {
+    public HomePage chooseInterCite(){
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
-        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
-            worldButton.click();
+            wait.until(ExpectedConditions.visibilityOf(worldButton));
+        } catch (TimeoutException e) {
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+            javascriptExecutor.executeScript("scroll(0, 500);");
+            internationalCite.click();
         }
-        wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
-        europeLocator.click();
         return this;
     }
 
-    public HomePage chooseCoutry() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
-        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
-            europeLocator.click();
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
-            } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException e) {
-                wait.until(ExpectedConditions.elementToBeClickable(lithuania)).click();
-            }
-        }
-
-        return this;
-    }
+//    public HomePage chooseEurope() {
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
+//        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
+//            worldButton.click();
+//        }
+//        wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
+//        europeLocator.click();
+//        return this;
+//    }
+//
+//    public HomePage chooseCoutry() {
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
+//        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
+//            europeLocator.click();
+//            try {
+//                wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
+//            } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException e) {
+//                lithuania.click();
+//            }
+//        }
+//
+//        return this;
+//    }
 
     public HomePage backToTopCheck(){
         wait.until(ExpectedConditions.elementToBeClickable(backToTopButton)).click();
@@ -128,6 +139,6 @@ public class HomePage extends AbstractPage {
 
     public String waitForNewCountry() {
        String currentURL = driver.getCurrentUrl();
-       return currentURL.toLowerCase(Locale.ROOT).contains("at") ? "at" : "li";
+       return currentURL.toLowerCase(Locale.ROOT).contains("wb") ? "at" : "wb";
     }
 }

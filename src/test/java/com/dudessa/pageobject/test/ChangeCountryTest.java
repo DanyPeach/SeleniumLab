@@ -12,8 +12,8 @@ public class ChangeCountryTest extends CommonConditions{
         driver.manage().window().maximize();
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("scroll(0, 5500);");
-        homePage.openPage().clickOnWorld().chooseEurope().chooseCoutry();
+        homePage.openPage().clickOnWorld().chooseInterCite();
         String result = homePage.waitForNewCountry();
-        Assert.assertEquals(result, "at");
+        Assert.assertEquals(result, "wb");
     }
 }
