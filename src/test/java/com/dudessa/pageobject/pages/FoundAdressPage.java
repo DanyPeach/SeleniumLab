@@ -20,7 +20,6 @@ public class FoundAdressPage extends AbstractPage{
     }
 
     public boolean checkResults(){
-        wait.until(ExpectedConditions.visibilityOf(locatorResult));
         String address = locatorResult.getText();
         return !address.contains("sorry");
     }
