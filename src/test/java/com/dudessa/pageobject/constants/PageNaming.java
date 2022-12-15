@@ -7,4 +7,5 @@ public class PageNaming {
     public static final String PROFILE_PAGE_AFTER_LOGIN = "https://www.valentino.com/en-ca/account/Overview";
     public static final String FILTER_CATALOG_PAGE = "https://www.valentino.com/en-ca/men/bags/shoulder-bags";
     public static final String PRODUCT_TO_CART_PAGE = "https://www.valentino.com/en-ca/hats_cod1647597278060411.html#dept=ROW_Hats-Gloves_W";
+    public static final String BOUTIQUES_SEARCH_PAGE = "https://boutiques.valentino.com/";
 }
