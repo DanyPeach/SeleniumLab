@@ -90,7 +90,7 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage chooseInterCite(){
+    public HomePage chooseInterCite() {
         try {
             wait.until(ExpectedConditions.visibilityOf(worldButton));
         } catch (TimeoutException e) {
@@ -127,18 +127,22 @@ public class HomePage extends AbstractPage {
 //        return this;
 //    }
 
-    public HomePage backToTopCheck(){
-        wait.until(ExpectedConditions.elementToBeClickable(backToTopButton)).click();
+    public HomePage backToTopCheck() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(inputLine));
+        }catch (TimeoutException e){
+            backToTopButton.click();
+        }
         return this;
     }
 
-    public boolean isBtnVisible(){
+    public boolean isBtnVisible() {
         wait.until(ExpectedConditions.visibilityOf(searchButton));
         return searchButton.isDisplayed();
     }
 
     public String waitForNewCountry() {
-       String currentURL = driver.getCurrentUrl();
-       return currentURL.toLowerCase(Locale.ROOT).contains("wb") ? "at" : "wb";
+        String currentURL = driver.getCurrentUrl();
+        return currentURL.toLowerCase(Locale.ROOT).contains("wb") ? "at" : "wb";
     }
 }
