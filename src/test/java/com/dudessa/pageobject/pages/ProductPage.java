@@ -1,6 +1,8 @@
 package com.dudessa.pageobject.pages;
 
 import com.dudessa.pageobject.constants.PageNaming;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProductPage extends AbstractPage {
+    private final Logger logger = LogManager.getRootLogger();
+
     @FindBy(xpath = "//*[@id=\"main\"]/div[1]/div[4]/div[6]/div/div[3]/p")
     WebElement codeOfProduct;
 
@@ -45,6 +49,7 @@ public class ProductPage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(cartTitle));
         }catch (TimeoutException e){
+            logger.info("getting amount of products");
             return cartTitle.getText().contains("1");
         }
         return false;

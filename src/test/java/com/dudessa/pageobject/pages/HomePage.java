@@ -1,6 +1,8 @@
 package com.dudessa.pageobject.pages;
 
 import com.dudessa.pageobject.constants.TestConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,6 +11,7 @@ import java.util.Locale;
 
 public class HomePage extends AbstractPage {
 
+    private final Logger logger = LogManager.getRootLogger();
     private final String PAGE_URL = "https://www.valentino.com/en-ca";
 
     @FindBy(xpath = "//button[@aria-controls='panelSearchMobile']")
@@ -58,6 +61,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
         } catch (TimeoutException e) {
+            logger.error(e.getMessage() + "when try enter keys");
             searchButton.click();
         }
         wait.until(ExpectedConditions.elementToBeClickable(inputLine));
@@ -69,6 +73,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
         } catch (TimeoutException e) {
+            logger.error(e.getMessage() + "when try enter keys");
             searchButton.click();
         }
         inputLine.sendKeys(TestConstants.PRODUCT_CODE);
@@ -85,6 +90,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(worldButton)).click();
         } catch (TimeoutException e) {
+            logger.error(e.getMessage() + "waiting for button");
             worldButton.click();
         }
         return this;
@@ -94,6 +100,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(worldButton));
         } catch (TimeoutException e) {
+            logger.error(e.getMessage() + " waiting for button, start scrolling");
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
             javascriptExecutor.executeScript("scroll(0, 500);");
             internationalCite.click();
@@ -105,6 +112,7 @@ public class HomePage extends AbstractPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
         } catch (TimeoutException e) {
+            logger.info("exception throws, click to top");
             backToTopButton.click();
         }
         return this;
