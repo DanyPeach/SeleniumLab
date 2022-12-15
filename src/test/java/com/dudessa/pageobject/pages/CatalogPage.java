@@ -2,6 +2,8 @@ package com.dudessa.pageobject.pages;
 
 import com.dudessa.pageobject.constants.PageNaming;
 import com.dudessa.pageobject.constants.TestConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +16,8 @@ import static com.dudessa.pageobject.constants.TestConstants.SUGGESTION_INPUT;
 
 
 public class CatalogPage extends AbstractPage{
+    private final Logger logger = LogManager.getRootLogger();
+
     @FindBy(className = "toggleProductInWishlist")
     List<WebElement> listOfStars;
 
@@ -34,6 +38,7 @@ public class CatalogPage extends AbstractPage{
     }
 
     public String infoCheck(){
+        logger.info("waiting for " + imageWrapper.getTagName() + " to load");
         wait.until(ExpectedConditions.elementToBeClickable(imageWrapper));
         return infoOfProduct.getText().contains(SUGGESTION_INPUT) ? SUGGESTION_INPUT : "";
     }

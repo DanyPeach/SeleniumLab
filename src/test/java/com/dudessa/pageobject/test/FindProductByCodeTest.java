@@ -24,12 +24,6 @@ public class FindProductByCodeTest extends CommonConditions {
                         .findCodeOnPage()
                         .getAttribute("innerHTML")
         );
-
-
         Assert.assertEquals(res, PRODUCT_CODE);
-
     }
-
-
-
 }

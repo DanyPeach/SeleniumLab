@@ -15,7 +15,6 @@ public class DriverSingleton {
         if (null == driver) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-
         }
         return driver;
     }

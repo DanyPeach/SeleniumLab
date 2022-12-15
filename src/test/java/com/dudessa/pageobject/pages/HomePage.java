@@ -101,36 +101,10 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-//    public HomePage chooseEurope() {
-//        try {
-//            wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
-//        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
-//            worldButton.click();
-//        }
-//        wait.until(ExpectedConditions.elementToBeClickable(europeLocator));
-//        europeLocator.click();
-//        return this;
-//    }
-//
-//    public HomePage chooseCoutry() {
-//        try {
-//            wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
-//        } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException r) {
-//            europeLocator.click();
-//            try {
-//                wait.until(ExpectedConditions.elementToBeClickable(ausria)).click();
-//            } catch (NoSuchElementException | TimeoutException | ElementNotInteractableException e) {
-//                lithuania.click();
-//            }
-//        }
-//
-//        return this;
-//    }
-
     public HomePage backToTopCheck() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(inputLine));
-        }catch (TimeoutException e){
+        } catch (TimeoutException e) {
             backToTopButton.click();
         }
         return this;

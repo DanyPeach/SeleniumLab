@@ -1,7 +1,6 @@
 package com.dudessa.pageobject.test;
 
 import com.dudessa.pageobject.pages.HomePage;
-import com.sun.source.tree.AssertTree;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
